@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Reservatie;
 use Illuminate\Http\Request;
 
 class ReservatieController extends Controller
@@ -27,7 +27,13 @@ class ReservatieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'datum' => 'required|date',
+            'tijdslot' => 'required|date_format:H:i', // Hier moet de tijd in het formaat 'HH:MM' zijn
+            'voornaam' => 'required|string|max:255',
+            'familienaam' => 'required|string|max:255',
+            'abonnementsnummer' => 'required|string|max:255'
+        ]);
     }
 
     /**

@@ -34,6 +34,18 @@ class ReservatieController extends Controller
             'familienaam' => 'required|string|max:255',
             'abonnementsnummer' => 'required|string|max:255'
         ]);
+        //kan ook nog gebruik maken van the create method
+        $reservatie = new Reservatie();
+        $reservatie->datum = $request->input('datum');
+        $reservatie->tijdslot = $request->input('tijdslot');
+        $reservatie->voornaam = $request->input('voornaam');
+        $reservatie->familienaam = $request->input('familienaam');
+        $reservatie->abonnementsnummer = $request->input('abonnementsnummer');
+        $reservatie->save();
+
+        //Extra logica of doorverwijzing na succesvol opslaan van de gegevens
+
+        return redirect()->back()->with('success', 'Reservatie succesvol opgeslagen!');
     }
 
     /**

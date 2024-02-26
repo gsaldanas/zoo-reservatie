@@ -1,3 +1,16 @@
+@if(session()->has('success'))
+    <p>
+        {{ session()->get('success') }}
+    </p>
+@endif
+
+@if ($errors->any())
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
 <div class="max-w-md mx-auto">
     <form action="{{ route('reservatie.store') }}" method="POST" class="mt-8">
         @csrf

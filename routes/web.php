@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/reservatie', [App\Http\Controllers\ReservatieController::class, 'index'])->name('reservatie.index');
+Route::post('/reservatie', [App\Http\Controllers\ReservatieController::class, 'store'])->name('reservatie.store');

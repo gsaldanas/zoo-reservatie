@@ -84,6 +84,10 @@ class ReservatieController extends Controller
         $reservatie->abonnementsnummer = $request->input('abonnementsnummer');
         $reservatie->save();
 
+        //get the last inserted ID
+        // $reservatie->id;
+        //return Response::json(array('success' => true, 'last_insert_id' => $data->id), 200);
+
         //Extra logica of doorverwijzing na succesvol opslaan van de gegevens
         return view('success', ['reservatie' => $reservatie]);
         //return redirect()->back()->with('success', 'Reservatie succesvol opgeslagen!');
@@ -122,12 +126,20 @@ class ReservatieController extends Controller
     }
     public function bezoekersPerDagGraph($startDatum, $eindDatum)
     {
+           // Definieer de array met sluitingsdagen
+           $sluitingsdagen = [
+            '2024-02-28', // Voorbeeld van een sluitingsdag
+            '2024-03-05', // Voorbeeld van een andere sluitingsdag
+            // Voeg hier meer sluitingsdagen toe indien nodig
+        ];
+
         // Converteer de start- en einddatum naar Carbon objecten
         $startDatum = Carbon::parse($startDatum);
         $eindDatum = Carbon::parse($eindDatum);
 
         // Bouw de query om het aantal bezoekers per dag te krijgen
         $query = Reservatie::whereBetween('datum', [$startDatum, $eindDatum])
+            ->whereNotIn('datum', $sluitingsdagen)
             ->selectRaw('datum, count(*) as aantal_bezoekers')
             ->groupBy('datum')
             ->orderBy('datum');

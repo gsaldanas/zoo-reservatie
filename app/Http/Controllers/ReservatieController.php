@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Reservatie;
 use Illuminate\Http\Request;
+use Carbon\carbon;
+use Illuminate\Support\Facades\DB;
 
 class ReservatieController extends Controller
 {
@@ -78,5 +80,31 @@ class ReservatieController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function bezoekersPerDagGraph($startDatum, $eindDatum)
+    {
+        // Converteer de start- en einddatum naar Carbon objecten
+        $startDatum = Carbon::parse($startDatum);
+        $eindDatum = Carbon::parse($eindDatum);
+
+        // Bouw de query om het aantal bezoekers per dag te krijgen
+        $query = Reservatie::whereBetween('datum', [$startDatum, $eindDatum])
+            ->selectRaw('datum, count(*) as aantal_bezoekers')
+            ->groupBy('datum')
+            ->orderBy('datum');
+
+        // Voer de query uit en haal de resultaten op
+        $aantalBezoekersPerDag = $query->get();
+
+        return response()->json($aantalBezoekersPerDag);
+        // Dump de query en het resultaat om te controleren
+       // dd($query->toSql(), $aantalBezoekersPerDag);
+
+        // Nu heb je een collectie van data die het aantal bezoekers per dag bevat
+        // Je kunt deze data gebruiken om een grafiek te maken
+
+        // return view('bezoekers.graph', [
+        //     'aantalBezoekersPerDag' => $aantalBezoekersPerDag
+        // ]);
     }
 }

@@ -9,6 +9,8 @@
             <label for="tijdslot" class="block text-gray-700 text-sm font-bold mb-2">Tijdslot</label>
             <input type="time" name="tijdslot" id="tijdslot" class="form-input w-full">
         </div>
+        <fieldset>
+            <legend>Bezoekers</legend>
         <div class="mb-4">
             <label for="voornaam" class="block text-gray-700 text-sm font-bold mb-2">Voornaam</label>
             <input type="text" name="voornaam" id="voornaam" class="form-input w-full">
@@ -22,7 +24,11 @@
             <input type="text" name="abonnementsnummer" id="abonnementsnummer" class="form-input w-full">
         </div>
         <div class="mt-6">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Opslaan</button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Voeg nog een bezoeker toe</button>
+        </div>
+    </fieldset>
+        <div class="mt-6">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reserveer</button>
         </div>
     </form>
 </div>

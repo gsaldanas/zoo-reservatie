@@ -7,7 +7,13 @@
         </div>
         <div class="mb-4">
             <label for="tijdslot" class="block text-gray-700 text-sm font-bold mb-2">Tijdslot</label>
-            <input type="time" name="tijdslot" id="tijdslot" class="form-input w-full">
+            <select name="tijdslot" id="tijdslot" class="form-select w-full">
+                <option value="10:00">10:00 - 12:00</option>
+                <option value="12:00">12:00 - 14:00</option>
+                <option value="14:00">14:00 - 16:00</option>
+                <option value="16:00">16:00 - 18:00</option>
+                <!-- Voeg hier andere tijdsloten toe zoals nodig -->
+            </select>
         </div>
         <fieldset>
             <legend>Bezoekers</legend>

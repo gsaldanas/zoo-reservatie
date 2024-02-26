@@ -40,6 +40,40 @@ class ReservatieController extends Controller
             //TO DO, er komt geen feedback
             return redirect()->back()->with('error', 'Sorry, de zoo is vol voor deze datum en tijd.');
         }
+        // Valideer de invoer
+        $request->validate([
+            'datum' => 'required|date',
+            'tijdslot' => 'required|date_format:H:i',
+            'voornaam' => 'required|string|max:255',
+            'familienaam' => 'required|string|max:255',
+            'abonnementsnummer' => [
+                'required',
+                'string',
+                'size:12', // Het formaat moet inclusief de streepjes zijn
+                // Valideer het abonnementsnummer formaat en checksum
+                // function ($attribute, $value, $fail) {
+                //     // Verwijder streepjes uit de waarde
+                //     $numericValue = str_replace('-', '', $value);
+
+                //     // Controleer of de waarde het juiste formaat heeft
+                //     if (!preg_match('/^\d{4}-\d{4}-\d{2}$/', $value)) {
+                //         $fail('Het abonnementsnummer moet in het formaat XXXX-XXXX-XX zijn.');
+                //     }
+
+                //     // Neem de eerste 8 cijfers voor checksumberekening
+                //     $checksumValue = substr($numericValue, 0, -2);
+
+                //     // Bereken de checksum
+                //     $checksum = substr($value, -2);
+                //     $num = $checksumValue % 98;
+
+                //     // Controleer of de checksum overeenkomt
+                //     if ($num != $checksum) {
+                //         $fail('Ongeldig abonnementsnummer.');
+                //     }
+                // }
+            ]
+        ]);
 
         //kan ook nog gebruik maken van the create method
         $reservatie = new Reservatie();

@@ -1,7 +1,5 @@
 @if(session()->has('success'))
-    <p>
-        {{ session()->get('success') }}
-    </p>
+    <p>{{ session()->get('success') }}</p>
 @endif
 
 @if ($errors->any())
@@ -10,6 +8,10 @@
             <li>{{ $error }}</li>
         @endforeach
     </ul>
+@endif
+
+@if(session()->has('error'))
+    <p>{{ session()->get('error') }}</p>
 @endif
 <div class="max-w-md mx-auto">
     <form action="{{ route('reservatie.store') }}" method="POST" class="mt-8">

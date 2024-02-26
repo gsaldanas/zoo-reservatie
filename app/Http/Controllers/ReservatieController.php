@@ -37,15 +37,10 @@ class ReservatieController extends Controller
 
         if ($numberOfReservations >= 200) {
             // Als het aantal reservaties al 200 heeft bereikt, geef een foutmelding
+            //TO DO, er komt geen feedback
             return redirect()->back()->with('error', 'Sorry, de zoo is vol voor deze datum en tijd.');
         }
-        $request->validate([
-            'datum' => 'required|date',
-            'tijdslot' => 'required|date_format:H:i', // Hier moet de tijd in het formaat 'HH:MM' zijn
-            'voornaam' => 'required|string|max:255',
-            'familienaam' => 'required|string|max:255',
-            'abonnementsnummer' => 'required|string|max:255'
-        ]);
+
         //kan ook nog gebruik maken van the create method
         $reservatie = new Reservatie();
         $reservatie->datum = $request->input('datum');

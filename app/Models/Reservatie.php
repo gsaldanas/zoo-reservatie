@@ -16,4 +16,8 @@ class Reservatie extends Model
         'familienaam',
         'abonnementsnummer'
     ];
+    // public function bezoekers()
+    // {
+    //     return $this->hasMany(Bezoeker::class);
+    // }
 }

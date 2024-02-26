@@ -49,7 +49,7 @@ class ReservatieController extends Controller
             'abonnementsnummer' => [
                 'required',
                 'string',
-                'size:12', // Het formaat moet inclusief de streepjes zijn
+                'size:10', // Het formaat moet inclusief de streepjes zijn
                 // Valideer het abonnementsnummer formaat en checksum
                 // function ($attribute, $value, $fail) {
                 //     // Verwijder streepjes uit de waarde
@@ -85,8 +85,8 @@ class ReservatieController extends Controller
         $reservatie->save();
 
         //Extra logica of doorverwijzing na succesvol opslaan van de gegevens
-
-        return redirect()->back()->with('success', 'Reservatie succesvol opgeslagen!');
+        return view('success', ['reservatie' => $reservatie]);
+        //return redirect()->back()->with('success', 'Reservatie succesvol opgeslagen!');
     }
 
     /**

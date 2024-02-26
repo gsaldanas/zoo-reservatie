@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservatie Succesvol</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
 @if(session()->has('success'))
     <p>{{ session()->get('success') }}</p>
 @endif
@@ -14,6 +23,7 @@
     <p>{{ session()->get('error') }}</p>
 @endif
 <div class="max-w-md mx-auto">
+    <h1>Reserveer je bezoek aan de zoo</h1>
     <form action="{{ route('reservatie.store') }}" method="POST" class="mt-8">
         @csrf
         <div class="mb-4">
@@ -45,7 +55,7 @@
             <input type="text" name="abonnementsnummer" id="abonnementsnummer" class="form-input w-full">
         </div>
         <div class="mt-6">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Voeg nog een bezoeker toe</button>
+            <button type="submit" disabled class="bg-yellow-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Voeg nog een bezoeker toe</button>
         </div>
     </fieldset>
         <div class="mt-6">
@@ -53,3 +63,5 @@
         </div>
     </form>
 </div>
+</body>
+</html>

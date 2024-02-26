@@ -49,7 +49,8 @@ class ReservatieController extends Controller
             'abonnementsnummer' => [
                 'required',
                 'string',
-                'size:10', // Het formaat moet inclusief de streepjes zijn
+                'size:10',
+                // Het formaat moet inclusief de streepjes zijn
                 // Valideer het abonnementsnummer formaat en checksum
                 // function ($attribute, $value, $fail) {
                 //     // Verwijder streepjes uit de waarde
@@ -83,7 +84,7 @@ class ReservatieController extends Controller
         $reservatie->familienaam = $request->input('familienaam');
         $reservatie->abonnementsnummer = $request->input('abonnementsnummer');
         $reservatie->save();
-
+        // $reservatieId = $reservatie->id;
         //get the last inserted ID
         // $reservatie->id;
         //return Response::json(array('success' => true, 'last_insert_id' => $data->id), 200);
@@ -126,8 +127,8 @@ class ReservatieController extends Controller
     }
     public function bezoekersPerDagGraph($startDatum, $eindDatum)
     {
-           // Definieer de array met sluitingsdagen
-           $sluitingsdagen = [
+        // Definieer de array met sluitingsdagen
+        $sluitingsdagen = [
             '2024-02-28', // Voorbeeld van een sluitingsdag
             '2024-03-05', // Voorbeeld van een andere sluitingsdag
             // Voeg hier meer sluitingsdagen toe indien nodig

@@ -9,6 +9,7 @@
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-2xl font-bold mb-4">Reservatie Succesvol</h1>
+        {{-- <p>De ID van je reservatie is: {{ $reservatieId }}</p> --}}
         <div class="bg-white p-6 rounded-lg shadow-md">
             <p class="mb-4">Hier zijn de details van uw reservatie:</p>
             <ul class="list-disc pl-5">

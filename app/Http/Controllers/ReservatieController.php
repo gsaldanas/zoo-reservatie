@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Reservatie;
 use Illuminate\Http\Request;
 use Carbon\carbon;
@@ -29,6 +30,15 @@ class ReservatieController extends Controller
      */
     public function store(Request $request)
     {
+        // Controleer het aantal gereserveerde plaatsen
+        $numberOfReservations = Reservatie::where('datum', $request->input('datum'))
+            ->where('tijdslot', $request->input('tijdslot'))
+            ->count();
+
+        if ($numberOfReservations >= 200) {
+            // Als het aantal reservaties al 200 heeft bereikt, geef een foutmelding
+            return redirect()->back()->with('error', 'Sorry, de zoo is vol voor deze datum en tijd.');
+        }
         $request->validate([
             'datum' => 'required|date',
             'tijdslot' => 'required|date_format:H:i', // Hier moet de tijd in het formaat 'HH:MM' zijn
@@ -97,8 +107,10 @@ class ReservatieController extends Controller
         $aantalBezoekersPerDag = $query->get();
 
         return response()->json($aantalBezoekersPerDag);
+        //TO DO NOG CHECKEN MET SLUITINGSDAGEN!!
+
         // Dump de query en het resultaat om te controleren
-       // dd($query->toSql(), $aantalBezoekersPerDag);
+        // dd($query->toSql(), $aantalBezoekersPerDag);
 
         // Nu heb je een collectie van data die het aantal bezoekers per dag bevat
         // Je kunt deze data gebruiken om een grafiek te maken
